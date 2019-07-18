@@ -1,19 +1,20 @@
 package com.mongobee.mongobee.configuration;
 
 import com.github.mongobee.Mongobee;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
-@Order
-@Component
+@Configuration
 public class MongoBeeConfig {
   @Bean
-  public Mongobee mongobee() {
+  @Autowired
+  public Mongobee mongobee(Environment environment) {
     Mongobee runner = new Mongobee("mongodb://localhost:27017/mongobee");
+    runner.setSpringEnvironment(environment);
     runner.setChangeLogsScanPackage(
         "com.mongobee.mongobee.changelogs"); // the package to be scanned for changesets
-
     return runner;
   }
 }

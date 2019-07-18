@@ -1,8 +1,6 @@
 {
   "value": {
     "dataType": "boolean",
-    "name": "Chatbot",
-    "type": "toggle",
-    "value": true
+    "type": "toggle"
   }
 }
